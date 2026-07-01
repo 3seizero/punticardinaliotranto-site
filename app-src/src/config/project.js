@@ -12,8 +12,8 @@ export const project = {
 
   // Palette reale (fonte: _brand/otranto/palette.json)
   theme: {
-    '--c-primary': '#16284B',
-    '--c-primary-dark': '#0F1C36',
+    '--c-primary': '#182E4E',
+    '--c-primary-dark': '#101F35',
     '--c-secondary': '#2E7D7B',
     '--c-accent': '#F2A93B',
     '--c-bg': '#FFFFFF',

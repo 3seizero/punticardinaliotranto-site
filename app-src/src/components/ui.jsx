@@ -29,13 +29,13 @@ export function PageHero({ title, subtitle, children }) {
   )
 }
 
-/* Card con icona tematica + descrizione rivelata al rollover / tap */
-function IconCard({ item, context }) {
-  const [open, setOpen] = useState(false)
+/* Card con icona tematica + descrizione rivelata al rollover / tap.
+   Lo stato "aperto" è gestito dalla griglia (accordion: uno solo aperto). */
+function IconCard({ item, context, open, onToggle }) {
   const title = item.titolo || item.nome
   const hasDesc = !!item.desc
   const interactive = hasDesc && ui.hoverReveal
-  const toggle = () => interactive && setOpen((o) => !o)
+  const toggle = () => interactive && onToggle()
   return (
     <article
       className={'icard' + (hasDesc ? ' has-desc' : '') + (interactive ? ' interactive' : '') + (open ? ' is-open' : '')}
@@ -57,13 +57,19 @@ function IconCard({ item, context }) {
   )
 }
 
-/* Griglia di card {titolo/nome, desc}. `context` aiuta la scelta dell'icona. */
+/* Griglia di card {titolo/nome, desc}. `context` aiuta la scelta dell'icona.
+   Gestisce l'accordion: apre una card e chiude la precedente. */
 export function CardGrid({ items, max, context }) {
   const list = max ? items.slice(0, max) : items
+  const [openIdx, setOpenIdx] = useState(null)
   if (ui.icons || ui.hoverReveal) {
     return (
       <div className="grid grid--icards">
-        {list.map((it, i) => <IconCard key={i} item={it} context={context} />)}
+        {list.map((it, i) => (
+          <IconCard key={i} item={it} context={context}
+            open={openIdx === i}
+            onToggle={() => setOpenIdx((cur) => (cur === i ? null : i))} />
+        ))}
       </div>
     )
   }
