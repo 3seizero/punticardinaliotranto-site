@@ -44,11 +44,13 @@ if ($errors) {
 }
 
 $clean = fn(string $s) => str_replace(["\r", "\n"], ' ', $s);
-$SMTP_HOST = getenv('SMTP_HOST') ?: '';
-$SMTP_PORT = (int)(getenv('SMTP_PORT') ?: 465);
-$SMTP_USER = getenv('SMTP_USER') ?: '';
-$SMTP_PASS = getenv('SMTP_PASS') ?: '';
-$MAIL_TO   = getenv('MAIL_TO')   ?: $SMTP_USER;
+// Legge le variabili sia da PHP-FPM (env[...]) sia da Apache (SetEnv) sia da $_ENV
+$envv = fn(string $k) => getenv($k) ?: ($_SERVER[$k] ?? ($_ENV[$k] ?? ''));
+$SMTP_HOST = $envv('SMTP_HOST');
+$SMTP_PORT = (int)($envv('SMTP_PORT') ?: 465);
+$SMTP_USER = $envv('SMTP_USER');
+$SMTP_PASS = $envv('SMTP_PASS');
+$MAIL_TO   = $envv('MAIL_TO') ?: $SMTP_USER;
 $SITE      = $_SERVER['HTTP_HOST'] ?? 'webapp';
 
 $subject = "[{$SITE}] Richiesta: {$clean($tipo)}";
