@@ -1,0 +1,108 @@
+/* Chrome del layout: header, nav, footer, form. Stili di pagina seguono dopo lo schema. */
+
+/* Barra loghi istituzionali (in cima a tutto) */
+.inst-bar { background: #fff; border-bottom: 1px solid var(--c-border); }
+.inst-bar .container { display: flex; justify-content: center; padding-block: 0.55rem; }
+.inst-bar img { max-height: 64px; width: auto; max-width: 100%; }
+
+/* Header app: colore palette del progetto (il logo ha "PUNTI CARDINALI" in bianco) */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--c-primary); color: var(--c-on-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+.site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 66px; }
+.brand { display: inline-flex; align-items: center; }
+.brand__logo { height: 48px; width: auto; }
+.brand__text { color: var(--c-on-primary); font-weight: 700; font-size: 1.05rem; }
+
+/* Hamburger (linee bianche su testa scura) */
+.hamburger {
+  display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+  width: 46px; height: 46px; padding: 0 10px; border: none; background: none; cursor: pointer;
+}
+.hamburger span { display: block; height: 3px; border-radius: 3px; background: var(--c-on-primary); transition: none; }
+
+/* Menu flyout a tutto schermo */
+.flyout {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--c-primary);
+  display: flex; flex-direction: column;
+  transform: translateX(100%); visibility: hidden;
+  transition: transform 0.28s ease;
+}
+.flyout.is-open { transform: translateX(0); visibility: visible; }
+.flyout__top { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; min-height: 66px; }
+.flyout__title { color: var(--c-on-primary); font-weight: 700; }
+.flyout__logo { height: 44px; width: auto; }
+.flyout__close { background: none; border: none; color: var(--c-on-primary); font-size: 2.4rem; line-height: 1; cursor: pointer; padding: 0 0.3rem; }
+.flyout__nav { display: flex; flex-direction: column; gap: 0.25rem; padding: 1.5rem 0; overflow-y: auto; }
+.flyout__link {
+  color: var(--c-on-primary); font-size: 1.4rem; font-weight: 600; text-decoration: none;
+  padding: 0.7rem clamp(1rem, 4vw, 2.5rem); opacity: 0.9;
+}
+.flyout__link:hover, .flyout__link.is-active { opacity: 1; background: rgba(255, 255, 255, 0.12); text-decoration: none; }
+.flyout__link.is-active { box-shadow: inset 4px 0 0 var(--c-accent); }
+
+/* Footer istituzionale */
+.site-footer { background: var(--c-primary-dark); color: rgba(255, 255, 255, 0.92); padding-block: 2.2rem; margin-top: 3rem; }
+.footer-logos { max-width: 1000px; margin: 0 auto 1.4rem; background: #fff; border-radius: 10px; padding: 0.8rem 1rem; }
+.footer-inst p { font-size: 0.82rem; opacity: 0.85; margin-bottom: 0.5rem; }
+.footer-inst strong { color: #fff; }
+
+/* Form CTA */
+.booking-form { display: grid; gap: 0.9rem; max-width: 520px; }
+.booking-form label { display: grid; gap: 0.3rem; font-weight: 600; font-size: 0.9rem; color: var(--c-text); }
+.booking-form input[type="text"],
+.booking-form input[type="email"],
+.booking-form input[type="tel"],
+.booking-form textarea {
+  font: inherit; padding: 0.7rem 0.85rem; border: 1px solid var(--c-border);
+  border-radius: 10px; background: var(--c-bg); color: var(--c-text); width: 100%;
+}
+.booking-form .consent { grid-template-columns: auto 1fr; align-items: start; gap: 0.5rem; font-weight: 400; font-size: 0.82rem; }
+.form-error { color: #c0392b; font-weight: 600; }
+.form-success { text-align: center; padding: 1.5rem; }
+
+/* ---- Hero home ---- */
+.hero {
+  background: var(--c-primary); color: var(--c-on-primary);
+  background-size: cover; background-position: center;
+  padding-block: clamp(3rem, 9vw, 6.5rem);
+}
+.hero__inner { max-width: 820px; }
+.hero h1 { color: var(--c-on-primary); }
+.hero__claim { font-size: clamp(1.1rem, 2.6vw, 1.5rem); font-weight: 600; color: var(--c-accent); margin-bottom: 1.2rem; }
+.hero__text { opacity: 0.92; }
+
+/* CTA: pulsanti impilati, tutti stessa larghezza (viewport meno margini),
+   fino a un massimo su desktop, allineati a sinistra. */
+.cta-stack { display: flex; flex-direction: column; align-items: stretch; gap: 0.75rem; margin-top: 1.6rem; width: 100%; max-width: 460px; }
+.cta-stack .btn { width: 100%; justify-content: center; text-align: center; }
+
+/* Testo introduttivo (prima sezione dopo l'hero) */
+.intro-lead { padding-block: clamp(2rem, 5vw, 3.2rem); }
+.lead { font-size: clamp(1.05rem, 2.2vw, 1.2rem); color: var(--c-text-soft); max-width: 780px; }
+
+/* ---- Page hero (pagine interne) ---- */
+.page-hero { background: var(--c-bg-alt); padding-block: clamp(2.2rem, 6vw, 3.6rem); border-bottom: 1px solid var(--c-border); }
+.page-hero__sub { font-size: 1.1rem; color: var(--c-text-soft); max-width: 760px; }
+.kicker { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; color: var(--c-secondary); margin-bottom: 0.3rem; }
+
+/* ---- Liste / chip ---- */
+.bullets { columns: 2; column-gap: 2rem; padding-left: 1.1rem; }
+.bullets li { margin-bottom: 0.4rem; break-inside: avoid; }
+@media (max-width: 600px) { .bullets { columns: 1; } }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+.chip { background: var(--c-bg-alt); border: 1px solid var(--c-border); color: var(--c-text); padding: 0.4rem 0.85rem; border-radius: 999px; font-size: 0.9rem; font-weight: 600; }
+
+/* ---- Card cliccabili / colonne info ---- */
+.card--link { text-decoration: none; color: inherit; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.card--link:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); text-decoration: none; }
+.card__desc { color: var(--c-text-soft); margin-bottom: 0; }
+.info-cols { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+/* ---- Modale ---- */
+.modal-overlay { position: fixed; inset: 0; background: rgba(10,18,30,0.55); display: grid; place-items: center; padding: 1rem; z-index: 100; }
+.modal { background: var(--c-bg); border-radius: var(--radius); padding: 2rem; max-width: 560px; width: 100%; max-height: 90vh; overflow: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.modal__close { position: absolute; top: 0.6rem; right: 0.9rem; background: none; border: none; font-size: 1.8rem; line-height: 1; cursor: pointer; color: var(--c-text-soft); }
