@@ -10,7 +10,7 @@ export function Home() {
   const h = C.home
   return (
     <>
-      <section className="hero" style={project.assets?.hero ? { backgroundImage: `linear-gradient(rgba(15,28,54,0.78),rgba(15,28,54,0.82)), url(${project.assets.hero})` } : undefined}>
+      <section className={'hero shape-' + (project.shape || 'circle')} style={project.assets?.hero ? { backgroundImage: `linear-gradient(rgba(15,28,54,0.78),rgba(15,28,54,0.82)), url(${project.assets.hero})` } : undefined}>
         <div className="container hero__inner">
           <h1>{h.hero.titolo}</h1>
           <p className="hero__claim">{h.hero.claim}</p>

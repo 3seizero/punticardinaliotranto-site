@@ -8,6 +8,7 @@ export const project = {
   comune: 'Otranto',
   cup: 'E31B25000680002',
   dominio: 'punticardinaliotranto.antform.it',
+  shape: 'circle', // shape decorativa tono su tono (palette): Otranto = cerchio
 
   // Palette reale (fonte: _brand/otranto/palette.json)
   theme: {
