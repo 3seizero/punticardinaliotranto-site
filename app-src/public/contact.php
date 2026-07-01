@@ -44,13 +44,20 @@ if ($errors) {
 }
 
 $clean = fn(string $s) => str_replace(["\r", "\n"], ' ', $s);
-// Legge le variabili sia da PHP-FPM (env[...]) sia da Apache (SetEnv) sia da $_ENV
-$envv = fn(string $k) => getenv($k) ?: ($_SERVER[$k] ?? ($_ENV[$k] ?? ''));
-$SMTP_HOST = $envv('SMTP_HOST');
-$SMTP_PORT = (int)($envv('SMTP_PORT') ?: 465);
-$SMTP_USER = $envv('SMTP_USER');
-$SMTP_PASS = $envv('SMTP_PASS');
-$MAIL_TO   = $envv('MAIL_TO') ?: $SMTP_USER;
+// Config SMTP: prima da file di credenziali FUORI dalla document root
+// (sopravvive ai deploy, non è nel repo, non è raggiungibile dal web),
+// poi fallback a variabili d'ambiente. Il file `pcfw-smtp.php` va messo
+// UN LIVELLO SOPRA la cartella app/ (es. in httpdocs/) e ritorna un array.
+$secrets = [];
+foreach ([__DIR__ . '/../pcfw-smtp.php', __DIR__ . '/../../pcfw-smtp.php'] as $sf) {
+    if (is_file($sf)) { $tmp = include $sf; if (is_array($tmp)) { $secrets = $tmp; break; } }
+}
+$cfg = fn(string $k) => $secrets[$k] ?? (getenv($k) ?: ($_SERVER[$k] ?? ($_ENV[$k] ?? '')));
+$SMTP_HOST = $cfg('SMTP_HOST');
+$SMTP_PORT = (int)($cfg('SMTP_PORT') ?: 465);
+$SMTP_USER = $cfg('SMTP_USER');
+$SMTP_PASS = $cfg('SMTP_PASS');
+$MAIL_TO   = $cfg('MAIL_TO') ?: $SMTP_USER;
 $SITE      = $_SERVER['HTTP_HOST'] ?? 'webapp';
 
 $subject = "[{$SITE}] Richiesta: {$clean($tipo)}";
