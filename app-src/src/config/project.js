@@ -28,7 +28,7 @@ export const project = {
     logosHeader: '/brand/logos-header.png', // striscia loghi istituzionali (in cima) — placeholder, Carlo prepara il blocco definitivo
     logoHeader: '/brand/logo.png',           // logo progetto "Otranto in Movimento"
     hero: '', // hero su navy pieno (la slide brandizzata faceva doppio testo). Foto hero dedicata: in attesa da Carlo.
-    logosFooter: '/brand/logos-footer.png',  // striscia loghi footer — placeholder, Carlo prepara il blocco definitivo
+    logosFooter: '', // striscia loghi footer rimossa (richiesta Carlo)
     favicon: '/favicon.svg',
   },
 
