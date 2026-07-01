@@ -115,6 +115,49 @@
 .card__desc { color: var(--c-text-soft); margin-bottom: 0; }
 .info-cols { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
+/* ---- Icon-card con rollover (reversibili via src/config/ui.js) ---- */
+.grid--icards .icard {
+  background: var(--c-bg); border: 1px solid var(--c-border); border-radius: var(--radius);
+  padding: 1.25rem 1.4rem; box-shadow: var(--shadow);
+}
+.icard.interactive { cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .18s; }
+.icard.interactive:hover, .icard.interactive:focus-visible {
+  border-color: var(--c-secondary); box-shadow: 0 12px 30px rgba(0,0,0,.10); transform: translateY(-2px); outline: none;
+}
+.icard__head { display: flex; align-items: center; gap: .7rem; }
+.icard__head h3 { margin: 0; color: var(--c-primary); font-size: 1.06rem; }
+.icard__icon {
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  width: 42px; height: 42px; border-radius: 9px; color: var(--c-secondary);
+  background: color-mix(in srgb, var(--c-secondary) 12%, transparent);
+}
+.icard__icon svg { width: 23px; height: 23px; }
+/* segnale di interattività (+ che ruota) */
+.icard.interactive .icard__head::after {
+  content: '+'; margin-left: auto; color: var(--c-text-soft); font-size: 1.4rem; line-height: 1; transition: transform .2s, color .2s;
+}
+.icard.interactive:hover .icard__head::after, .icard.is-open .icard__head::after { transform: rotate(45deg); color: var(--c-secondary); }
+/* rollover: descrizione a comparsa */
+.icard__reveal {
+  display: grid; grid-template-rows: 0fr; overflow: hidden; opacity: 0; margin-top: 0;
+  transition: grid-template-rows .26s ease, opacity .26s ease, margin-top .26s ease;
+}
+.icard__reveal > p { min-height: 0; margin: 0; color: var(--c-text-soft); }
+.icard.interactive:hover .icard__reveal,
+.icard.interactive:focus-within .icard__reveal,
+.icard.is-open .icard__reveal { grid-template-rows: 1fr; opacity: 1; margin-top: .6rem; }
+
+/* ---- Marker elenchi con la shape del progetto ---- */
+.bullets--shape { list-style: none; padding-left: 0; }
+.bullets--shape li { position: relative; padding-left: 1.6rem; }
+.bullets--shape li::before {
+  content: ''; position: absolute; left: 2px; top: .55em; width: 9px; height: 9px;
+  background: var(--c-accent); border-radius: 2px;
+}
+[data-shape="circle"] .bullets--shape li::before { border-radius: 50%; }
+[data-shape="diamond"] .bullets--shape li::before { transform: rotate(45deg); }
+[data-shape="square"] .bullets--shape li::before { border-radius: 1px; }
+
 /* ---- Modale ---- */
 .modal-overlay { position: fixed; inset: 0; background: rgba(10,18,30,0.55); display: grid; place-items: center; padding: 1rem; z-index: 100; }
 .modal { background: var(--c-bg); border-radius: var(--radius); padding: 2rem; max-width: 560px; width: 100%; max-height: 90vh; overflow: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }

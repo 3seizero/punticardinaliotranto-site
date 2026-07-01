@@ -9,6 +9,7 @@ import './App.css'
 function applyTheme(theme) {
   const root = document.documentElement
   Object.entries(theme || {}).forEach(([k, v]) => root.style.setProperty(k, v))
+  root.dataset.shape = project.shape || 'circle'
 }
 
 const hasOpportunita = content.opportunita?.voci?.length > 0

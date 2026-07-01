@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { content } from './config/content.js'
 import { project } from './config/project.js'
 import { Section, PageHero, CardGrid, Bullets, Chips, TextBlock, BookingCTA } from './components/ui.jsx'
+import { Icon, iconFor } from './components/icons.jsx'
 
 const C = content
 
@@ -41,8 +42,11 @@ export function Home() {
           {h.azioni.map((a, i) => {
             const routes = ['/orientation-desk', '/orientation-lab', '/job-day', '/donna-partecipa', '/mareasinistra']
             return (
-              <Link to={routes[i]} className="card card--link" key={i}>
-                <h3>{a.titolo}</h3>
+              <Link to={routes[i]} className="card card--link icard" key={i}>
+                <div className="icard__head">
+                  <span className="icard__icon"><Icon name={a.icon || iconFor(a.titolo)} /></span>
+                  <h3>{a.titolo}</h3>
+                </div>
                 <p className="card__desc">{a.desc}</p>
               </Link>
             )
@@ -122,7 +126,7 @@ export function OrientationLab() {
       <PageHero title={l.titolo} subtitle={l.intro || undefined} />
       {l.aree.map((area, i) => (
         <Section key={i} title={area.titolo} alt={i % 2 === 1}>
-          <CardGrid items={area.laboratori} />
+          <CardGrid items={area.laboratori} context={area.titolo} />
         </Section>
       ))}
       <Section><div className="cta-stack"><BookingCTA label="Iscriviti a un laboratorio" tipo="laboratorio" /></div></Section>

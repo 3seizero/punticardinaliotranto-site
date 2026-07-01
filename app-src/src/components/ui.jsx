@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import BookingForm from './BookingForm.jsx'
+import { ui } from '../config/ui.js'
+import { Icon, iconFor } from './icons.jsx'
 
 /* Sezione con titolo opzionale e sfondo alternabile */
 export function Section({ title, kicker, alt, children, id }) {
@@ -27,9 +29,44 @@ export function PageHero({ title, subtitle, children }) {
   )
 }
 
-/* Griglia di card {titolo/nome, desc} */
-export function CardGrid({ items, max }) {
+/* Card con icona tematica + descrizione rivelata al rollover / tap */
+function IconCard({ item, context }) {
+  const [open, setOpen] = useState(false)
+  const title = item.titolo || item.nome
+  const hasDesc = !!item.desc
+  const interactive = hasDesc && ui.hoverReveal
+  const toggle = () => interactive && setOpen((o) => !o)
+  return (
+    <article
+      className={'icard' + (hasDesc ? ' has-desc' : '') + (interactive ? ' interactive' : '') + (open ? ' is-open' : '')}
+      onClick={toggle}
+      tabIndex={interactive ? 0 : undefined}
+      aria-expanded={interactive ? open : undefined}
+      onKeyDown={(e) => { if (interactive && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggle() } }}
+    >
+      <div className="icard__head">
+        {ui.icons && <span className="icard__icon"><Icon name={item.icon || iconFor(title, context)} /></span>}
+        <h3>{title}</h3>
+      </div>
+      {hasDesc && (
+        ui.hoverReveal
+          ? <div className="icard__reveal"><p>{item.desc}</p></div>
+          : <p className="card__desc">{item.desc}</p>
+      )}
+    </article>
+  )
+}
+
+/* Griglia di card {titolo/nome, desc}. `context` aiuta la scelta dell'icona. */
+export function CardGrid({ items, max, context }) {
   const list = max ? items.slice(0, max) : items
+  if (ui.icons || ui.hoverReveal) {
+    return (
+      <div className="grid grid--icards">
+        {list.map((it, i) => <IconCard key={i} item={it} context={context} />)}
+      </div>
+    )
+  }
   return (
     <div className="grid">
       {list.map((it, i) => (
@@ -45,7 +82,7 @@ export function CardGrid({ items, max }) {
 /* Lista a pallini semplice */
 export function Bullets({ items }) {
   return (
-    <ul className="bullets">
+    <ul className={'bullets' + (ui.shapeBullets ? ' bullets--shape' : '')}>
       {items.map((t, i) => <li key={i}>{t}</li>)}
     </ul>
   )
