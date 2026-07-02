@@ -29,7 +29,8 @@ export const project = {
     logoHeader: '/brand/logo.png',           // logo progetto "Otranto in Movimento"
     hero: '', // hero su navy pieno (la slide brandizzata faceva doppio testo). Foto hero dedicata: in attesa da Carlo.
     logosFooter: '', // striscia loghi footer rimossa (richiesta Carlo)
-    favicon: '/favicon.svg',
+    favicon: '/favicon-96x96.png',
+    icon: '/web-app-manifest-192x192.png',
   },
 
   // Form CTA via endpoint PHP/SMTP in casa (/contact.php).
