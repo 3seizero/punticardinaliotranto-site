@@ -30,7 +30,7 @@ export const project = {
     hero: '', // hero su navy pieno (la slide brandizzata faceva doppio testo). Foto hero dedicata: in attesa da Carlo.
     logosFooter: '', // striscia loghi footer rimossa (richiesta Carlo)
     favicon: '/favicon-96x96.png',
-    icon: '/web-app-manifest-192x192.png',
+    icon: '/icons/icon-192.png',
   },
 
   // Form CTA via endpoint PHP/SMTP in casa (/contact.php).
