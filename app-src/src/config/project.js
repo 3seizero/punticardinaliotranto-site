@@ -4,6 +4,10 @@
 export const project = {
   slug: 'otranto',
   nomeProgetto: 'Otranto in Movimento',
+  // Nome completo con riferimento alla webapp: usato come <title>, mittente
+  // delle email e negli oggetti (richiesta Carlo: sempre riconoscibile la provenienza)
+  nomeCompleto: 'Otranto in Movimento - Punti Cardinali for Work | Otranto',
+  riferimento: 'Punti Cardinali for Work | Otranto',
   sottotitolo: 'Cultura, Agricoltura e Turismo per Nuove Opportunità Lavorative',
   comune: 'Otranto',
   cup: 'E31B25000680002',
