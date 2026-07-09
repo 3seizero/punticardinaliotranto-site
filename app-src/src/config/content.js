@@ -154,7 +154,7 @@ export const content = {
 
   orientationLab: {
     titolo: "30 LABORATORI PER ORIENTARSI, CRESCERE E COSTRUIRE IL PROPRIO FUTURO",
-    intro: "Gli Orientation Lab sono percorsi esperienziali della durata di 6 ore ciascuno. Attraverso metodologie attive e partecipative favoriscono l'apprendimento, la scoperta delle proprie competenze e la conoscenza delle opportunità offerte dal territorio.",
+    intro: "Gli Orientation Lab sono percorsi esperienziali della **durata di 6 ore** ciascuno. Attraverso metodologie attive e partecipative favoriscono l'apprendimento, la scoperta delle proprie competenze e la conoscenza delle opportunità offerte dal territorio.",
     aree: [
       {
         titolo: "AREA 1 – TURISMO E CULTURA",
@@ -217,6 +217,13 @@ export const content = {
   jobDay: {
     titolo: "Incontro tra persone, imprese e opportunità",
     intro: "I Job Day rappresentano occasioni concrete di confronto tra cittadini, aziende, enti di formazione e servizi per il lavoro.",
+    // Prossimo appuntamento: alimenta il blocco "CALENDARIO" e il campo "Quando" del form
+    appuntamento: {
+      data: "20 luglio 2026",
+      orario: "dalle 18:00 alle 22:00",
+      luogo: "\"Le Fabbriche Community Library\" – Piazza dell'Umanità Migrante",
+      citta: "Otranto",
+    },
     percorsi: [],
     "attività": [
       "recruiting",
@@ -251,6 +258,13 @@ export const content = {
   mareASinistra: {
     titolo: "Otranto si racconta oltre i propri confini",
     intro: "Puglia Attrattiva #mareAsinistra è la linea di intervento dedicata alla promozione delle eccellenze territoriali, delle opportunità professionali e delle vocazioni produttive di Otranto. Attraverso eventi, fiere, manifestazioni e iniziative regionali, il progetto porta il territorio fuori dai propri confini per raccontarne identità, risorse e prospettive di sviluppo.",
+    // Prossimo appuntamento: alimenta il blocco "CALENDARIO" e il campo "Quando" del form
+    appuntamento: {
+      data: "20 giugno 2026",
+      orario: "dalle 15:00 alle 21:00",
+      luogo: "Expo Salento",
+      citta: "Carmiano",
+    },
     obiettivi: [
       "valorizzare il territorio",
       "promuovere le eccellenze locali",
